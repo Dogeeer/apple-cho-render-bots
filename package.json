@@ -1,0 +1,21 @@
+{
+  "name": "apple-cho-render-bots",
+  "version": "1.0.0",
+  "private": true,
+  "main": "render_launcher.js",
+  "scripts": {
+    "start": "node render_launcher.js",
+    "start:applepaylac": "node projectinf_fishing_bot_apple.js",
+    "start:chopaylac": "node projectinf_fishing_bot.js",
+    "check": "node --check render_launcher.js && node --check projectinf_fishing_bot.js && node --check projectinf_fishing_bot_apple.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "mineflayer": "^4.31.0",
+    "mineflayer-pathfinder": "^2.4.5",
+    "socks": "^2.8.9",
+    "vec3": "^0.1.10"
+  }
+}

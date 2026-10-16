@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: apple-cho-bots
+    runtime: node
+    plan: free
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: MC_PASSWORD
+        sync: false
+      - key: BOT_HEAP_MB
+        value: "180"
+      - key: DISABLE_FILE_LOGS
+        value: "true"
