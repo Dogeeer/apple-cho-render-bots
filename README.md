@@ -1,6 +1,6 @@
-# Apple + Cho Render Bots
+# ChoPayLac on Render
 
-Runs ApplePayLac and ChoPayLac together in one Render Web Service without a proxy.
+Runs only ChoPayLac in one Render Web Service without a proxy. ApplePayLac is not started by the launcher; its source is retained for later use.
 
 ## Render setup
 
@@ -12,7 +12,7 @@ Runs ApplePayLac and ChoPayLac together in one Render Web Service without a prox
 6. Set the health check path to `/health`.
 7. Point an UptimeRobot HTTP monitor at `https://YOUR-SERVICE.onrender.com/health` with a 5-minute interval.
 
-Both proxy environment variables are cleared by `render_launcher.js`, so both bots connect directly from Render.
+Proxy environment variables are cleared by `render_launcher.js`, so ChoPayLac connects directly from Render.
 
 ## Health endpoint
 

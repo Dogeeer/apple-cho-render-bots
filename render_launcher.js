@@ -10,14 +10,12 @@ const RESTART_BASE_MS = 5000;
 const RESTART_MAX_MS = 60000;
 const STABLE_RUNTIME_MS = 5 * 60 * 1000;
 
-const hasApplePassword = Boolean(process.env.APPLE_MC_PASSWORD || process.env.MC_PASSWORD);
 const hasChoPassword = Boolean(process.env.CHO_MC_PASSWORD || process.env.MC_PASSWORD);
-if (!hasApplePassword || !hasChoPassword) {
-  throw new Error('Set MC_PASSWORD, or set both APPLE_MC_PASSWORD and CHO_MC_PASSWORD.');
+if (!hasChoPassword) {
+  throw new Error('Set CHO_MC_PASSWORD or MC_PASSWORD.');
 }
 
 const botSpecs = [
-  { name: 'ApplePayLac', script: 'projectinf_fishing_bot_apple.js' },
   { name: 'ChoPayLac', script: 'projectinf_fishing_bot.js' },
 ];
 
