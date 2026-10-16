@@ -634,6 +634,11 @@ function createBot() {
   lastKickText = '';
 
   const sessionId = ++botSessionId;
+  console.log(`[BOT] Connecting attempt ${sessionId}: ${CONFIG.HOST}:${CONFIG.PORT} (MC ${CONFIG.VERSION}).`);
+  const connectWatchdog = setTimeout(() => {
+    console.error('[BOT] No spawn within 30s; restarting process through launcher.');
+    process.exit(1);
+  }, 30000);
   const currentBot = mineflayer.createBot(buildBotOptions());
   bot = currentBot;
   currentBot.loadPlugin(pathfinder);
@@ -647,6 +652,7 @@ function createBot() {
   });
 
   currentBot.once('spawn', () => {
+    clearTimeout(connectWatchdog);
     if (currentBot !== bot || sessionId !== botSessionId) return;
     setupMovement();
     console.log('[BOT] Spawned. Logging in...');
@@ -692,6 +698,7 @@ function createBot() {
   });
 
   currentBot.on('end', reason => {
+    clearTimeout(connectWatchdog);
     if (currentBot !== bot || sessionId !== botSessionId || shuttingDown) return;
     if (!loginDone) hostFailover.markConnectFailureBeforeLogin();
     const disconnectText = lastKickText || reason;
